@@ -1,5 +1,18 @@
 # rc: minor bump
 
+- Implement (de)serialization of `Place.description` and `Place.annotation`.
+  Neither of these is throughly plumbed into the existing Windows and web
+  clients, but they are made available in the engine and so can be helpful for
+  bespoke apps (#28, #29)
+- When setting image and place coordinates from WCS data, correct the
+  determination of the image center for the place. It was wrong due to a simple
+  X/Y transposition. Note that this calculation has a moderate weakness in that
+  if an image has many masked pixels, and they're not symmetric around the nominal
+  image center, the "center" will appear offset visually. (#27)
+
+
+# wwt_data_formats 0.6.0 (2020-11-17)
+
 - Add `wwtdatatool wtml rewrite-disk` to transform a "relative" WTML file to one
   containing on-disk file paths, to ease testing with the Windows desktop app.
 - Fix XML files created on Windows to be sure that they specify UTF-8 encoding,
